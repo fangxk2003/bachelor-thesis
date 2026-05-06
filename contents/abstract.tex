@@ -3,7 +3,7 @@
 \begin{abstract}[zh]
   前交叉韧带（Anterior Cruciate Ligament, ACL）孤立性撕裂与多发韧带膝关节损伤（Multi-Ligament Knee Injury, MLKI）是诱发创伤后骨关节炎（Post-traumatic Osteoarthritis, PTOA）的核心危险因素。
   利用磁共振成像（Magnetic Resonance Imaging, MRI）对软骨及骨髓病变（Bone Marrow Lesions, BML）进行三维定量评估，在早期诊断与预后分析中具有重大临床价值。
-  然而，目前的分析面临严重痛点：全像素手动标注极度耗时，且不同扫描序列间的域偏移导致传统监督模型泛化性能崩溃。
+  然而，目前的分析面临严重痛点：全像素手动标注时间成本较高，且不同扫描序列间的域偏移导致传统监督模型泛化性能显著下降。
   针对上述问题，本文开发了一套无监督/极少监督的深度学习膝关节MRI分割与三维量化分析管线。
   \par 在分割层面，提出了一种改进的域对抗神经网络（Domain Adversarial Neural Network, DANN）。
   通过引入实例归一化（Instance Normalization, IN）滤除对比度风格差异，结合空洞空间金字塔池化（Atrous Spatial Pyramid Pooling, ASPP）增强微小软骨的全局感知，并创新性设计了动态冻结对抗训练策略，在无标签快速自旋回波（Fast Spin Echo, FSE）数据上实现了高精度的跨序列特征迁移。

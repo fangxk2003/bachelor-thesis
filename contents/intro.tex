@@ -7,11 +7,11 @@
   流行病学研究显示，此类损伤高度集中于15至30岁的年轻活跃人群\cite{sandersIncidenceAnteriorCruciate2016}，
   且常伴随半月板及软骨的继发性损伤\cite{spindlerClinicalPracticeAnterior2008}。
   相比之下，多发韧带膝关节损伤（Multi-Ligament Knee Injury, MLKI）虽然仅占膝关节韧带损伤的一小部分（约2.5\%）\cite{wilsonEpidemiologyMultiligamentKnee2014}，
-  但其致伤原因多为车祸等高能创伤，往往导致灾难性的关节失稳，需要更为复杂的手术重建干预\cite{moatsheDiagnosisTreatmentMultiligament2017}。
+  但其致伤原因多为车祸等高能创伤，往往导致严重的关节失稳，需要更为复杂的手术重建干预\cite{moatsheDiagnosisTreatmentMultiligament2017}。
   这两种损伤不仅在急性期严重影响患者的运动功能，更是诱发创伤后骨关节炎（PTOA）的关键危险因素\cite{lohmanderLongtermConsequenceAnterior2007, snoekerRiskKneeOsteoarthritis2020}。
   \par 在疾病诊断与预后预测中，磁共振成像（MRI）凭借其卓越的软组织对比度，已成为评估膝关节状态的临床“金标准”。
   特别是基于高精度三维MRI分割提取的定量指标（如软骨三维厚度分布\cite{ecksteinMagneticResonanceImaging2006}、骨髓病变（BML）的绝对体积\cite{felsonAssociationBoneMarrow2001}等），在早期捕捉OA不可逆的微观退变、评估手术疗效以及预测患者长远临床结局方面，展现出了不可替代的临床价值。
-  \par 然而，要实现这些高维指标的自动化提取，临床面临着严峻的痛点。
+  \par 然而，要实现这些高维指标的自动化提取，面临着显著的临床挑战。
   首先是手动标注的极高时间成本：膝关节包含极其微小且复杂的软骨曲面和弥漫性BML，
   放射科专家手动勾画单例三维高分辨率MRI往往需要耗费数小时，且存在显著的观察者间变异性。
   其次，当前基于深度学习的监督模型泛化性极差：不同医院、不同扫描仪及不同序列（如DESS与常规非脂抑FSE序列）之间存在巨大的数据分布差异（Domain Shift）。
