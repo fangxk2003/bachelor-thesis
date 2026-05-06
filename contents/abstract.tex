@@ -1,24 +1,26 @@
 % !TEX root = ../main.tex
 
 \begin{abstract}[zh]
-  中文摘要应该将学位论文的内容要点简短明了地表达出来，应该包含论文中的基本信息，
-  体现科研工作的核心思想。摘要内容应涉及本项科研工作的目的和意义、研究方法、研究
-  成果、结论及意义。注意突出学位论文中具有创新性的成果和新见解的部分。摘要中不宜
-  使用公式、化学结构式、图表和非公知公用的符号和术语，不标注引用文献编号。硕士学
-  位论文中文摘要字数为 500 字左右，博士学位论文中文摘要字数为 800 字左右。英文摘
-  要内容应与中文摘要内容一致。
-
-  摘要页的下方注明本文的关键词（4 \textasciitilde{} 6 个）。
+  前交叉韧带（Anterior Cruciate Ligament, ACL）孤立性撕裂与多发韧带膝关节损伤（Multi-Ligament Knee Injury, MLKI）是诱发创伤后骨关节炎（Post-traumatic Osteoarthritis, PTOA）的核心危险因素。
+  利用磁共振成像（Magnetic Resonance Imaging, MRI）对软骨及骨髓病变（Bone Marrow Lesions, BML）进行三维定量评估，在早期诊断与预后分析中具有重大临床价值。
+  然而，目前的分析面临严重痛点：全像素手动标注极度耗时，且不同扫描序列间的域偏移导致传统监督模型泛化性能崩溃。
+  针对上述问题，本文开发了一套无监督/极少监督的深度学习膝关节MRI分割与三维量化分析管线。
+  \par 在分割层面，提出了一种改进的域对抗神经网络（Domain Adversarial Neural Network, DANN）。
+  通过引入实例归一化（Instance Normalization, IN）滤除对比度风格差异，结合空洞空间金字塔池化（Atrous Spatial Pyramid Pooling, ASPP）增强微小软骨的全局感知，并创新性设计了动态冻结对抗训练策略，在无标签快速自旋回波（Fast Spin Echo, FSE）数据上实现了高精度的跨序列特征迁移。
+  在重建层面，结合刚性配准与深度图像先验（Deep Image Prior, DIP）算法，实现了多视图数据的0.5mm各向同性高保真融合。
+  \par 在临床应用层面，开发了自动形态学量化工具，并对近600例患者进行了统计学分析。
+  结果揭示：相比于孤立ACL撕裂的局灶性高压撞击，MLKI患者的胫股关节接触面积显著锐减、软骨厚度损耗较轻，但BML体积呈极显著的弥漫性扩张（p<0.001）。
+  该发现从客观数据层面强有力地验证了高能创伤的“能量耗散”假说与“软骨保护”效应，为创伤机制解析提供了全新的AI方法学范式。
 \end{abstract}
 
 \begin{abstract}[en]
-  Shanghai Jiao Tong University (SJTU) is a key university in China. SJTU was
-  founded in 1896. It is one of the oldest universities in China. The University
-  has nurtured large numbers of outstanding figures include JIANG Zemin, DING
-  Guangen, QIAN Xuesen, Wu Wenjun, WANG An, etc.
-
-  SJTU has beautiful campuses, Bao Zhaolong Library, Various laboratories. It
-  has been actively involved in international academic exchange programs. It is
-  the center of CERNet in east China region, through computer networks, SJTU has
-  faster and closer connection with the world.
+  Isolated tears of the anterior cruciate ligament (ACL) and multi-ligament knee injuries (MLKI) are critical risk factors for post-traumatic osteoarthritis (PTOA).
+  Three-dimensional quantitative assessment of cartilage and bone marrow lesions (BML) using magnetic resonance imaging (MRI) holds significant clinical value for early diagnosis and prognosis.
+  However, full-pixel manual annotation is highly time-consuming, and domain shift between scanning sequences degrades the generalization of supervised models.
+  To address these limitations, this thesis proposes an unsupervised/few-shot deep learning pipeline for knee MRI segmentation and 3D quantitative analysis.
+  \par For segmentation, an improved Domain Adversarial Neural Network (DANN) is proposed.
+  By integrating Instance Normalization (IN) and Atrous Spatial Pyramid Pooling (ASPP), along with a novel dynamic freezing adversarial training strategy, the model achieves high-precision cross-sequence feature migration on unlabeled fast spin echo (FSE) data.
+  For reconstruction, combining rigid registration with the Deep Image Prior (DIP) algorithm enables 0.5mm isotropic high-fidelity fusion of multi-view data without high-resolution labels.
+  \par Clinically, automated morphological quantification tools were created to analyze nearly 600 patients. The results revealed that compared to the focal impact of isolated ACL tears, MLKI patients exhibited a significantly reduced joint contact area and milder cartilage loss, but a highly significant diffuse expansion in BML volume (p<0.001).
+  These findings robustly validate the "energy dissipation" hypothesis and cartilage protection effect in high-energy trauma, establishing a novel AI paradigm for orthopedic imaging analysis.
 \end{abstract}
