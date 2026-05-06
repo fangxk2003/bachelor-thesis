@@ -7,7 +7,7 @@
     OAI-ZIB数据集是膝关节医学影像研究领域中的“金标准”数据集之一。
     OAI（Osteoarthritis Initiative）是美国的一个长达数年的前瞻性研究项目，旨在识别骨关节炎（Osteoarthritis , OA）的生物标志物。
     它是由Zuse Institute Berlin（ZIB）在OAI原始数据库的基础上，筛选了507例膝关节病例，经过专家手工精细标注而形成的子集。
-    该数据集提供了极高空间分辨率的三维解剖信息，具体为0.7000mm×0.3646mm×0.3646mm是开发和验证自动分割、定量软骨分析算法的主流选择。
+    该数据集提供了极高空间分辨率的三维解剖信息，具体为 \qty{0.7000}{\milli\metre} $\times$ \qty{0.3646}{\milli\metre} $\times$ \qty{0.3646}{\milli\metre}是开发和验证自动分割、定量软骨分析算法的主流选择。
     \subsubsection{DESS 序列的技术原理}
       OAI-ZIB 数据集的采集主要基于 3D DESS 序列\cite{peterfyOsteoarthritisInitiativeReport2008}。
       这是膝关节扫描中最具代表性的序列之一。
@@ -36,7 +36,7 @@
       扫描序列为矢状面三维双回波稳态（3D Sagittal Double Echo Steady-State, DESS）序列。
       \par 在物理空间参数方面，该数据集具有极高的分辨率配置，为模型提取微小软骨边界提供了充足的像素信息。
       每个三维体积数据（Volume）由 160 张连续的矢状面切片构成，单张切片的矩阵尺寸统一为 384×384 像素。
-      其物理体素间距（Voxel Spacing）呈现高度的面内各向同性，具体尺寸为 0.3645 mm×0.3645 mm，层厚（Slice Thickness）为 0.7 mm。
+      其物理体素间距（Voxel Spacing）呈现高度的面内各向同性，具体尺寸为 \qty{0.3645}{\milli\metre} $\times$ \qty{0.3645}{\milli\metre}，层厚（Slice Thickness）为 \qty{0.7}{\milli\metre}。
       此外，在疾病严重程度的分布上，这 507 例数据覆盖了从健康到不同程度的膝关节骨关节炎（OA）患者，并且包含了大量中度至重度的骨关节炎病例。
       这种包含丰富病理形态（如软骨大面积缺损、骨赘增生）的数据分布，使得基于此训练的深度学习网络能够学习到更具鲁棒性和泛化能力的解剖学表征。
       \par 该数据集最核心的价值在于其提供了目前开源领域内最高质量的骨与软骨三维分割掩膜（Ground Truth）。
@@ -189,7 +189,7 @@
       如果直接将原始尺度不一的临床 FSE 序列输入网络，会导致模型难以学习到软骨和骨骼的一致性几何形态特征。
       \par 为了消除这种尺度偏移，本研究在三维空间中对所有目标域数据进行了基于固定物理间距的全局重采样。
       考虑到 UDA 任务中需要将临床 FSE 影像与 OAI-ZIB 的 DESS 影像进行特征级对齐，
-      本研究将目标分辨率强制映射到与源域一致的 $0.36\times 0.36\times 0.7 mm^3$ 标准间距上。
+      本研究将目标分辨率强制映射到与源域一致的 \qty{0.36}{\milli\metre} $\times$ \qty{0.36}{\milli\metre} $\times$ \qty{0.7}{\milli\metre} 标准间距上。
       在重采样算法的选择上，采用了三线性插值（Trilinear Interpolation）以平滑地过渡体素值，避免近邻插值带来的阶梯状边缘伪影。
       \par 在物理分辨率统一后，各个样本的三维矩阵维度（Matrix Size）出现了长短不一的情况。
       为满足网络批处理（Batch Processing）的张量维度对齐要求，本研究进一步采用了中心裁剪（Center Crop）与边缘零填充（Zero-padding）相结合的策略，
