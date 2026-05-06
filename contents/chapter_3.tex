@@ -4,12 +4,12 @@
 
 \section{实验数据集介绍}
   \subsection{OAI-ZIB 数据集}
-    骨关节炎倡议-柏林祖斯研究所（Osteoarthritis Initiative-Zuse Institute Berlin, OAI-ZIB）数据集是膝关节医学影像研究领域中的“金标准”数据集之一。
+    骨关节炎倡议-柏林祖斯研究所（Osteoarthritis Initiative-Zuse Institute Berlin, OAI-ZIB）数据集是膝关节医学影像研究领域中的“金标准”数据集之一\cite{ambellanAutomatedSegmentationKnee2019}。
     OAI 是美国的一个长达数年的前瞻性研究项目，旨在识别骨关节炎（Osteoarthritis, OA）的生物标志物。
     它是由柏林祖斯研究所（Zuse Institute Berlin, ZIB）在 OAI 原始数据库的基础上，筛选了507例膝关节病例，经过专家手工精细标注而形成的子集。
     该数据集提供了极高空间分辨率的三维解剖信息，具体为 \qty{0.7000}{\milli\metre} $\times$ \qty{0.3646}{\milli\metre} $\times$ \qty{0.3646}{\milli\metre}是开发和验证自动分割、定量软骨分析算法的主流选择。
     \subsubsection{DESS 序列的技术原理}
-      OAI-ZIB 数据集的采集主要基于三维双回波稳态（3D Double Echo Steady-State, 3D DESS）序列\cite{peterfyOsteoarthritisInitiativeReport2008}。
+      OAI-ZIB 数据集的采集主要基于三维双回波稳态（3D Double Echo Steady-State, 3D DESS）序列\cite{peterfyOsteoarthritisInitiativeReport2008}\cite{ecksteinDoubleEchoSteady2006}。
       这是膝关节扫描中最具代表性的序列之一。
       DESS 序列是一种梯度回波（Gradient Recalled Echo, GRE）技术。
       在 DESS 序列中，由于重复时间（Repetition Time, TR）短于组织的纵向弛豫时间 $T_1$ 和横向弛豫时间 $T_2$，系统在单次激发后无法恢复至初始的热平衡状态。

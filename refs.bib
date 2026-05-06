@@ -1,3 +1,21 @@
+@article{ambellanAutomatedSegmentationKnee2019,
+  title = {Automated Segmentation of Knee Bone and Cartilage Combining Statistical Shape Knowledge and Convolutional Neural Networks: {{Data}} from the {{Osteoarthritis Initiative}}},
+  shorttitle = {Automated Segmentation of Knee Bone and Cartilage Combining Statistical Shape Knowledge and Convolutional Neural Networks},
+  author = {Ambellan, Felix and Tack, Alexander and Ehlke, Moritz and Zachow, Stefan},
+  date = {2019-02},
+  journaltitle = {Medical Image Analysis},
+  shortjournal = {Medical Image Analysis},
+  volume = {52},
+  pages = {109--118},
+  issn = {13618415},
+  doi = {10.1016/j.media.2018.11.009},
+  url = {https://linkinghub.elsevier.com/retrieve/pii/S1361841518304882},
+  urldate = {2025-09-21},
+  abstract = {We present a method for the automated segmentation of knee bones and cartilage from magnetic resonance imaging (MRI) that combines a priori knowledge of anatomical shape with Convolutional Neural Networks (CNNs). The proposed approach incorporates 3D Statistical Shape Models (SSMs) as well as 2D and 3D CNNs to achieve a robust and accurate segmentation of even highly pathological knee structures. The shape models and neural networks employed are trained using data from the Osteoarthritis Initiative (OAI) and the MICCAI grand challenge “Segmentation of Knee Images 2010” (SKI10), respectively. We evaluate our method on 40 validation and 50 submission datasets from the SKI10 challenge. For the first time, an accuracy equivalent to the inter-observer variability of human readers is achieved in this challenge. Moreover, the quality of the proposed method is thoroughly assessed using various measures for data from the OAI, i.e. 507 manual segmentations of bone and cartilage, and 88 additional manual segmentations of cartilage. Our method yields sub-voxel accuracy for both OAI datasets. We make the 507 manual segmentations as well as our experimental setup publicly available to further aid research in the field of medical image segmentation. In conclusion, combining localized classification via CNNs with statistical anatomical knowledge via SSMs results in a state-of-the-art segmentation method for knee bones and cartilage from MRI data.},
+  langid = {english},
+  file = {/Users/fangxk2003/Zotero/storage/4F7NL9MH/Ambellan et al. - 2019 - Automated segmentation of knee bone and cartilage combining statistical shape knowledge and convolut.pdf}
+}
+
 @article{ben-davidTheoryLearningDifferent2010,
   title = {A Theory of Learning from Different Domains},
   author = {Ben-David, Shai and Blitzer, John and Crammer, Koby and Kulesza, Alex and Pereira, Fernando and Vaughan, Jennifer Wortman},
@@ -51,6 +69,25 @@
   file = {/Users/fangxk2003/Zotero/storage/NNRRVQMT/29584598.html}
 }
 
+@article{carballido-gamioIntersubjectComparisonMRI2008,
+  title = {Inter-Subject Comparison of {{MRI}} Knee Cartilage Thickness},
+  author = {Carballido-Gamio, Julio and Bauer, Jan S. and Stahl, Robert and Lee, Keh-Yang and Krause, Stefanie and Link, Thomas M. and Majumdar, Sharmila},
+  date = {2008-04},
+  journaltitle = {Medical image analysis},
+  shortjournal = {Med Image Anal},
+  volume = {12},
+  number = {2},
+  eprint = {17923429},
+  eprinttype = {pubmed},
+  pages = {120--135},
+  issn = {1361-8415},
+  doi = {10.1016/j.media.2007.08.002},
+  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC2838773/},
+  urldate = {2026-05-06},
+  abstract = {In this paper, we present the development and application of current image processing techniques to perform MRI inter-subject comparison of knee cartilage thickness based on the registration of bone structures. Each point in the bone surface which is part of the bone–cartilage interface is assigned a cartilage thickness value. Cartilage and corresponding bone structures are segmented and their shapes interpolated to create isotropic voxels. Cartilage thicknesses are computed for each point in the bone–cartilage interfaces and transferred to the bone surfaces. Corresponding anatomic points are then computed for bone surfaces based on shape matching using 3D shape descriptors called shape contexts to register bones with affine and elastic transformations, and then perform a point to point comparison of cartilage thickness values. An alternative technique for cartilage shape interpolation using a morphing technique is also presented. The cartilage segmentation and morphing were validated visually, based on volumetric measurements of porcine knee images which cartilage volumes were measured using a water displacement method, and based on digital thickness values computed with an established technique. Shape matching using 3D shape contexts was validated visually and against manual shape matching performed by a radiologist. The reproducibility of intra- and inter-subject cartilage thickness comparisons was established, as well as the feasibility of using the proposed technique to build a mean femoral shape, cartilage thickness map, and cartilage coverage map. Results showed that the proposed technique is robust, accurate, and reproducible to perform point to point inter-subject comparison of knee cartilage thickness values.},
+  pmcid = {PMC2838773}
+}
+
 @article{ebnerAutomatedFrameworkLocalization2020,
   title = {An Automated Framework for Localization, Segmentation and Super-Resolution Reconstruction of Fetal Brain {{MRI}}},
   author = {Ebner, Michael and Wang, Guotai and Li, Wenqi and Aertsen, Michael and Patel, Premal A. and Aughwane, Rosalind and Melbourne, Andrew and Doel, Tom and Dymarkowski, Steven and De Coppi, Paolo and David, Anna L. and Deprest, Jan and Ourselin, Sébastien and Vercauteren, Tom},
@@ -66,6 +103,25 @@
   abstract = {High-resolution volume reconstruction from multiple motion-corrupted stacks of 2D slices plays an increasing role for fetal brain Magnetic Resonance Imaging (MRI) studies. Currently existing reconstruction methods are time-consuming and often require user interactions to localize and extract the brain from several stacks of 2D slices. We propose a fully automatic framework for fetal brain reconstruction that consists of four stages: 1) fetal brain localization based on a coarse segmentation by a Convolutional Neural Network (CNN), 2) fine segmentation by another CNN trained with a multi-scale loss function, 3) novel, single-parameter outlier-robust super-resolution reconstruction, and 4) fast and automatic high-resolution visualization in standard anatomical space suitable for pathological brains. We validated our framework with images from fetuses with normal brains and with variable degrees of ventriculomegaly associated with open spina bifida, a congenital malformation affecting also the brain. Experiments show that each step of our proposed pipeline outperforms state-of-the-art methods in both segmentation and reconstruction comparisons including expert-reader quality assessments. The reconstruction results of our proposed method compare favorably with those obtained by manual, labor-intensive brain segmentation, which unlocks the potential use of automatic fetal brain reconstruction studies in clinical practice.},
   keywords = {Brain localization,Convolutional neural network,Deep learning,Fetal MRI,Segmentation,Super resolution},
   file = {/Users/fangxk2003/Zotero/storage/XDERXW9U/S1053811919309152.html}
+}
+
+@article{ecksteinDoubleEchoSteady2006,
+  title = {Double Echo Steady State Magnetic Resonance Imaging of Knee Articular Cartilage at 3 {{Tesla}}: A Pilot Study for the {{Osteoarthritis Initiative}}},
+  shorttitle = {Double Echo Steady State Magnetic Resonance Imaging of Knee Articular Cartilage at 3 {{Tesla}}},
+  author = {Eckstein, F and Hudelmaier, M and Wirth, W and Kiefer, B and Jackson, R and Yu, J and Eaton, C B and Schneider, E},
+  date = {2006-04-01},
+  journaltitle = {Annals of the Rheumatic Diseases},
+  shortjournal = {Annals of the Rheumatic Diseases},
+  volume = {65},
+  number = {4},
+  pages = {433--441},
+  issn = {0003-4967},
+  doi = {10.1136/ard.2005.039370},
+  url = {https://www.sciencedirect.com/science/article/pii/S0003496724202193},
+  urldate = {2026-05-06},
+  abstract = {Background: Quantitative magnetic resonance imaging (qMRI) may provide valuable measures of cartilage morphology in osteoarthritis (OA) but has been confined to sequences with relatively long acquisition times at 1.5 Tesla (T). Objective: To test the accuracy and precision of knee cartilage qMRI with a fast double echo, steady state (DESS) sequence with water excitation (we) at 3 T. Methods: As a pilot study for the Osteoarthritis Initiative, test-retest MR images were acquired in the knees of 19 participants with no OA to moderate degrees of clinical OA. Two double oblique coronal fast low angle shot (FLASHwe) sequences (1.5 mm slice thickness) were acquired at 3 T, and two sagittal DESSwe sequences (0.7 mm slice thickness). Double oblique coronal multiplanar reformats (MPR) were performed (1.5 mm slice thickness) from the sagittal DESSwe. Knee joint cartilage plates were quantified unpaired in random order with blinding to subject identification. Results: In the femorotibial joint, precision errors (root mean square coefficient of variation in \% for unpaired analysis) for cartilage volume and thickness were 3.0–6.4\% with coronal FLASHwe, 2.4–6.2\% with coronal MPR DESSwe, and 2.3–8.2\% with sagittal DESSwe. Correlation coefficients between DESSwe and FLASHwe ranged from r{$\mkern1mu$}={$\mkern1mu$}0.88 to 1.0. In the femoropatellar joint, precision errors (sagittal DESSwe) were 3.4–8.5\%. Conclusions: DESSwe permits accurate and precise analysis of cartilage morphology in the femorotibial joint at 3 T. Further studies are needed to examine the accuracy of DESSwe in the femoropatellar joint and its ability to characterise sensitivity to longitudinal changes in cartilage morphology.},
+  keywords = {biomarkers,cartilage,magnetic resonance imaging,osteoarthritis},
+  file = {/Users/fangxk2003/Zotero/storage/32S3GZZ8/S0003496724202193.html}
 }
 
 @article{ecksteinMagneticResonanceImaging2006,
@@ -119,6 +175,25 @@
   abstract = {BACKGROUND: The cause of pain in osteoarthritis is unknown. Bone has pain fibers, and marrow lesions, which are thought to represent edema, have been noted in osteoarthritis. OBJECTIVE: To determine whether bone marrow lesions on magnetic resonance imaging (MRI) are associated with pain in knee osteoarthritis. DESIGN: Cross-sectional observational study. SETTING: Veterans Affairs Medical Center. PATIENTS: 401 persons (mean age, 66.8 years) with knee osteoarthritis on radiography who were drawn from clinics in the Veterans Administration health care system and from the community. Of these persons, 351 had knee pain and 50 had no knee pain. MEASUREMENTS: Knee radiography and MRI of one knee were performed in all participants. Those with knee pain quantified the severity of their pain. On MRI, coronal T(2)-weighted fat-saturated images were used to score the size of bone marrow lesions, and each knee was characterized as having any lesion or any large lesion. The prevalence of lesions and large lesions in persons with and without knee pain was compared; in participants with knee pain, the presence of lesions was correlated with severity of pain. RESULTS: Bone marrow lesions were found in 272 of 351 (77.5\%) persons with painful knees compared with 15 of 50 (30\%) persons with no knee pain (P {$<$} 0.001). Large lesions were present almost exclusively in persons with knee pain (35.9\% vs. 2\%; P {$<$} 0.001). After adjustment for severity of radiographic disease, effusion, age, and sex, lesions and large lesions remained associated with the occurrence of knee pain. Among persons with knee pain, bone marrow lesions were not associated with pain severity. CONCLUSIONS: Bone marrow lesions on MRI are strongly associated with the presence of pain in knee osteoarthritis.},
   langid = {english},
   keywords = {Adult,Aged,Aged 80 and over,Arthralgia,Bone Marrow,Cross-Sectional Studies,Edema,Female,Humans,Magnetic Resonance Imaging,Male,Middle Aged,Osteoarthritis Knee,Radiography,Regression Analysis,Severity of Illness Index}
+}
+
+@article{frobellAcutelyACLInjured2008,
+  title = {The Acutely {{ACL}} Injured Knee Assessed by {{MRI}}: Are Large Volume Traumatic Bone Marrow Lesions a Sign of Severe Compression Injury?},
+  shorttitle = {The Acutely {{ACL}} Injured Knee Assessed by {{MRI}}},
+  author = {Frobell, R. B. and Roos, H. P. and Roos, E. M. and Hellio Le Graverand, M.-P. and Buck, R. and Tamez-Pena, J. and Totterman, S. and Boegard, T. and Lohmander, L. S.},
+  date = {2008-07},
+  journaltitle = {Osteoarthritis and Cartilage},
+  shortjournal = {Osteoarthritis Cartilage},
+  volume = {16},
+  number = {7},
+  eprint = {18206394},
+  eprinttype = {pubmed},
+  pages = {829--836},
+  issn = {1063-4584},
+  doi = {10.1016/j.joca.2007.11.003},
+  abstract = {OBJECTIVES: To map by magnetic resonance imaging (MRI) and quantitative MRI (qMRI) concomitant fractures and meniscal injuries, and location and volume of traumatic bone marrow lesions (BMLs) in the acutely anterior cruciate ligament (ACL) injured knee. To relate BML location and volume to cortical depression fractures, meniscal injuries and patient characteristics. METHODS: One hundred and twenty-one subjects (26\% women, mean age 26 years) with an ACL rupture to a previously un-injured knee were studied using a 1.5T MR imager within 3 weeks from trauma. Meniscal injuries and fractures were classified by type, size and location. BML location and volume were quantified using a multi-spectral image data set analyzed by computer software, edited by an expert radiologist. RESULTS: Fractures were found in 73 (60\%) knees. In 67 (92\%) of these knees at least one cortical depression fracture was found. Uni-compartmental meniscal tears were found in 44 (36\%) subjects and bi-compartmental in 24 (20\%). One hundred and nineteen (98\%) knees had at least one BML, all but four (97\%) located in the lateral compartment. Knees with a cortical depression fracture had larger BML volumes (P{$<$}0.001) than knees without a cortical depression fracture, but no associations were found between meniscal tears and BML volume or fractures. Older age at injury was associated with smaller BML volumes (P{$<$}0.01). CONCLUSION: A majority of the ACL injured knees had a cortical depression fracture, which was associated with larger BML volumes. This indicates strong compressive forces to the articular surface and cartilage at the time of injury, which may constitute an additional risk factor for later knee osteoarthritis development.},
+  langid = {english},
+  keywords = {Acute Disease,Adult,Anterior Cruciate Ligament Injuries,Athletic Injuries,Bone Marrow,Female,Fractures Bone,Humans,Knee Injuries,Magnetic Resonance Imaging,Male,Stress Mechanical,Tibial Meniscus Injuries}
 }
 
 @incollection{ganinDomainAdversarialTrainingNeural2017,
@@ -175,6 +250,25 @@
   keywords = {BMA,Bone Marrow Lesions,Knee osteoarthritis,Osteo-Core-Plasty,Osteochondral Unit,Subchondral Bone Augmentation}
 }
 
+@article{hendersonComparisonMRIbasedEstimates2011,
+  title = {Comparison of {{MRI-based}} Estimates of Articular Cartilage Contact Area in the Tibiofemoral Joint},
+  author = {Henderson, Christopher E. and Higginson, Jill S. and Barrance, Peter J.},
+  date = {2011-01},
+  journaltitle = {Journal of Biomechanical Engineering},
+  shortjournal = {J Biomech Eng},
+  volume = {133},
+  number = {1},
+  eprint = {21186904},
+  eprinttype = {pubmed},
+  pages = {014502},
+  issn = {1528-8951},
+  doi = {10.1115/1.4002938},
+  abstract = {Knee osteoarthritis (OA) detrimentally impacts the lives of millions of older Americans through pain and decreased functional ability. Unfortunately, the pathomechanics and associated deviations from joint homeostasis that OA patients experience are not well understood. Alterations in mechanical stress in the knee joint may play an essential role in OA; however, existing literature in this area is limited. The purpose of this study was to evaluate the ability of an existing magnetic resonance imaging (MRI)-based modeling method to estimate articular cartilage contact area in vivo. Imaging data of both knees were collected on a single subject with no history of knee pathology at three knee flexion angles. Intra-observer reliability and sensitivity studies were also performed to determine the role of operator-influenced elements of the data processing on the results. The method's articular cartilage contact area estimates were compared with existing contact area estimates in the literature. The method demonstrated an intra-observer reliability of 0.95 when assessed using Pearson's correlation coefficient and was found to be most sensitive to changes in the cartilage tracings on the peripheries of the compartment. The articular cartilage contact area estimates at full extension were similar to those reported in the literature. The relationships between tibiofemoral articular cartilage contact area and knee flexion were also qualitatively and quantitatively similar to those previously reported. The MRI-based knee modeling method was found to have high intra-observer reliability, sensitivity to peripheral articular cartilage tracings, and agreeability with previous investigations when using data from a single healthy adult. Future studies will implement this modeling method to investigate the role that mechanical stress may play in progression of knee OA through estimation of articular cartilage contact area.},
+  langid = {english},
+  pmcid = {PMC3068480},
+  keywords = {Biomedical Engineering,Cartilage Articular,Female,Humans,Knee Joint,Magnetic Resonance Imaging,Middle Aged,Models Biological,Osteoarthritis Knee}
+}
+
 @inproceedings{isenseeAbstractNnUNetSelfadapting2019,
   title = {Abstract: nnU-Net: Self-adapting Framework for U-Net-Based Medical Image Segmentation},
   shorttitle = {Abstract},
@@ -189,6 +283,22 @@
   abstract = {The U-Net was presented in 2015. With its straight-forward and successful architecture it quickly evolved to a commonly used benchmark in medical image segmentation. The adaptation of the U-Net to novel problems, however, comprises several degrees of freedom regarding the exact architecture, preprocessing, training and inference.},
   isbn = {978-3-658-25326-4},
   langid = {ngerman}
+}
+
+@inproceedings{isolaImagetoImageTranslationConditional2017,
+  title = {Image-to-{{Image Translation}} with {{Conditional Adversarial Networks}}},
+  booktitle = {2017 {{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}})},
+  author = {Isola, Phillip and Zhu, Jun-Yan and Zhou, Tinghui and Efros, Alexei A.},
+  date = {2017-07},
+  pages = {5967--5976},
+  issn = {1063-6919},
+  doi = {10.1109/CVPR.2017.632},
+  url = {https://ieeexplore.ieee.org/document/8100115},
+  urldate = {2026-05-06},
+  abstract = {We investigate conditional adversarial networks as a general-purpose solution to image-to-image translation problems. These networks not only learn the mapping from input image to output image, but also learn a loss function to train this mapping. This makes it possible to apply the same generic approach to problems that traditionally would require very different loss formulations. We demonstrate that this approach is effective at synthesizing photos from label maps, reconstructing objects from edge maps, and colorizing images, among other tasks. Moreover, since the release of the pi×2pi× software associated with this paper, hundreds of twitter users have posted their own artistic experiments using our system. As a community, we no longer hand-engineer our mapping functions, and this work suggests we can achieve reasonable results without handengineering our loss functions either.},
+  eventtitle = {2017 {{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}})},
+  keywords = {Force,Gallium nitride,Generators,Image edge detection,Image resolution,Training},
+  file = {/Users/fangxk2003/Zotero/storage/RDR2N4WU/8100115.html}
 }
 
 @article{jiangMRIMovingSubjects2007,
@@ -208,6 +318,24 @@
   abstract = {Motion degrades magnetic resonance (MR) images and prevents acquisition of self-consistent and high-quality volume images. A novel methodology, Snapshot magnetic resonance imaging (MRI) with Volume Reconstruction (SVR) has been developed for imaging moving subjects at high resolution and high signal-to-noise ratio (SNR). The method combines registered 2-D slices from sequential dynamic single-shot scans. The SVR approach requires that the anatomy in question is not changing shape or size and is moving at a rate that allows snapshot images to be acquired. After imaging the target volume repeatedly to guarantee sufficient sampling every where, a robust slice-to-volume registration method has been implemented that achieves alignment of each slice within 0.3 mm in the examples tested. Multilevel scattered interpolation has been used to obtain high-fidelity reconstruction with root-mean-square (rms) error that is less than the noise level in the images. The SVR method has been performed successfully for brain studies on subjects that cannot stay still, and in some cases were moving substantially during scanning. For example, awake neonates, deliberately moved adults and, especially, on fetuses, for which no conventional high-resolution 3-D method is currently available. Fine structure of the in-utero fetal brain is clearly revealed for the first time and substantial SNR improvement is realized by having many individually acquired slices contribute to each voxel in the reconstructed image.},
   langid = {english},
   keywords = {Adult,Algorithms,Anatomy Cross-Sectional,Artifacts,Brain,Humans,Image Enhancement,Image Interpretation Computer-Assisted,Imaging Three-Dimensional,Infant Newborn,Magnetic Resonance Imaging,Movement,Pattern Recognition Automated,Prenatal Diagnosis,Reproducibility of Results,Sensitivity and Specificity,Subtraction Technique}
+}
+
+@article{kesslerOptimisationDeepNeural2020,
+  title = {The Optimisation of Deep Neural Networks for Segmenting Multiple Knee Joint Tissues from {{MRIs}}},
+  author = {Kessler, Dimitri A. and MacKay, James W. and Crowe, Victoria A. and Henson, Frances M. D. and Graves, Martin J. and Gilbert, Fiona J. and Kaggie, Joshua D.},
+  date = {2020-12},
+  journaltitle = {Computerized Medical Imaging and Graphics: The Official Journal of the Computerized Medical Imaging Society},
+  shortjournal = {Comput Med Imaging Graph},
+  volume = {86},
+  eprint = {33075675},
+  eprinttype = {pubmed},
+  pages = {101793},
+  issn = {1879-0771},
+  doi = {10.1016/j.compmedimag.2020.101793},
+  abstract = {Automated semantic segmentation of multiple knee joint tissues is desirable to allow faster and more reliable analysis of large datasets and to enable further downstream processing e.g. automated diagnosis. In this work, we evaluate the use of conditional Generative Adversarial Networks (cGANs) as a robust and potentially improved method for semantic segmentation compared to other extensively used convolutional neural network, such as the U-Net. As cGANs have not yet been widely explored for semantic medical image segmentation, we analysed the effect of training with different objective functions and discriminator receptive field sizes on the segmentation performance of the cGAN. Additionally, we evaluated the possibility of using transfer learning to improve the segmentation accuracy. The networks were trained on i) the SKI10 dataset which comes from the MICCAI grand challenge "Segmentation of Knee Images 2010″, ii) the OAI ZIB dataset containing femoral and tibial bone and cartilage segmentations of the Osteoarthritis Initiative cohort and iii) a small locally acquired dataset (Advanced MRI of Osteoarthritis (AMROA) study) consisting of 3D fat-saturated spoiled gradient recalled-echo knee MRIs with manual segmentations of the femoral, tibial and patellar bone and cartilage, as well as the cruciate ligaments and selected peri-articular muscles. The Sørensen-Dice Similarity Coefficient (DSC), volumetric overlap error (VOE) and average surface distance (ASD) were calculated for segmentation performance evaluation. DSC ≥ 0.95 were achieved for all segmented bone structures, DSC ≥ 0.83 for cartilage and muscle tissues and DSC of ≈0.66 were achieved for cruciate ligament segmentations with both cGAN and U-Net on the in-house AMROA dataset. Reducing the receptive field size of the cGAN discriminator network improved the networks segmentation performance and resulted in segmentation accuracies equivalent to those of the U-Net. Pretraining not only increased segmentation accuracy of a few knee joint tissues of the fine-tuned dataset, but also increased the network's capacity to preserve segmentation capabilities for the pretrained dataset. cGAN machine learning can generate automated semantic maps of multiple tissues within the knee joint which could increase the accuracy and efficiency for evaluating joint health.},
+  langid = {english},
+  pmcid = {PMC7721597},
+  keywords = {Bone and Bones,Convolutional neural network (CNN),Generative adversarial network (GAN),Humans,Image Processing Computer-Assisted,Image segmentation,Knee Joint,Magnetic Resonance Imaging,Magnetic resonance imaging (MRI),Musculoskeletal,Neural Networks Computer}
 }
 
 @article{khanAdvancingDeepLearning2026,
@@ -313,6 +441,26 @@
   urldate = {2026-05-05},
   langid = {english},
   keywords = {Arthroscopy,Knee,Ligaments,PCL/ACL}
+}
+
+@article{nolteGettingCartilageThickness2023,
+  title = {Getting {{Cartilage Thickness Measurements Right}}: {{A Systematic Inter-Method Comparison Using MRI Data}} from the {{Osteoarthritis Initiative}}},
+  shorttitle = {Getting {{Cartilage Thickness Measurements Right}}},
+  author = {Nolte, Teresa and Westfechtel, Simon and Schock, Justus and Knobe, Matthias and Pastor, Torsten and Pfaehler, Elisabeth and Kuhl, Christiane and Truhn, Daniel and Nebelung, Sven},
+  date = {2023-03},
+  journaltitle = {Cartilage},
+  shortjournal = {Cartilage},
+  volume = {14},
+  number = {1},
+  eprint = {36659857},
+  eprinttype = {pubmed},
+  pages = {26--38},
+  issn = {1947-6043},
+  doi = {10.1177/19476035221144744},
+  abstract = {OBJECTIVE: Magnetic resonance imaging is the standard imaging modality to assess articular cartilage. As the imaging surrogate of degenerative joint disease, cartilage thickness is commonly quantified after tissue segmentation. In lack of a standard method, this study systematically compared five methods for automatic cartilage thickness measurements across the knee joint and as a function of region and sub-region: 3D mesh normals (3D-MN), 3D nearest neighbors (3D-NN), 3D ray tracing (3D-RT), 2D centerline normals (2D-CN), and 2D surface normals (2D-SN). DESIGN: Based on the manually segmented femoral and tibial cartilage of 507 human knee joints, mean cartilage thickness was computed for the entire femorotibial joint, 4 joint regions, and 20 subregions using these methods. Inter-method comparisons of mean cartilage thickness and computation times were performed by one-way analysis of variance (ANOVA), Bland-Altman analyses and Lin's concordance correlation coefficient (CCC). RESULTS: Mean inter-method differences in cartilage thickness were significant in nearly all subregions (P {$<$} 0.001). By trend, mean differences were smallest between 3D-MN and 2D-SN in most (sub)regions, which is also reflected by highest quantitative inter-method agreement and CCCs. 3D-RT was prone to severe overestimation of up to 2.5 mm. 3D-MN, 3D-NN, and 2D-SN required mean processing times of ≤5.3 s per joint and were thus similarly efficient, whereas the time demand of 2D-CN and 3D-RT was much larger at 133 ± 29 and 351 ± 10 s per joint (P {$<$} 0.001). CONCLUSIONS: In automatic cartilage thickness determination, quantification accuracy and computational burden are largely affected by the underlying method. Mesh and surface normals or nearest neighbor searches should be used because they accurately capture variable geometries while being time-efficient.},
+  langid = {english},
+  pmcid = {PMC10076900},
+  keywords = {Cartilage Articular,cartilage thickness,Femur,Humans,inter-method comparison,Knee Joint,magnetic resonance imaging,Magnetic Resonance Imaging,osteoarthritis,Osteoarthritis,osteoarthritis initiative}
 }
 
 @article{peterfyOsteoarthritisInitiativeReport2008,
@@ -424,6 +572,23 @@
   doi = {10.1056/NEJMcp0804745},
   langid = {english},
   keywords = {Adolescent,Anterior Cruciate Ligament Injuries,Athletic Injuries,Female,Humans,Knee Injuries}
+}
+
+@article{stirlingDeepLearningbasedAutomated2024a,
+  title = {Deep Learning-Based Automated Detection and Segmentation of Bone and Traumatic Bone Marrow Lesions from {{MRI}} Following an Acute {{ACL}} Tear},
+  author = {Stirling, Callie E. and Neeteson, Nathan J. and Walker, Richard E. A. and Boyd, Steven K.},
+  date = {2024-08},
+  journaltitle = {Computers in Biology and Medicine},
+  shortjournal = {Comput Biol Med},
+  volume = {178},
+  eprint = {38905892},
+  eprinttype = {pubmed},
+  pages = {108791},
+  issn = {1879-0534},
+  doi = {10.1016/j.compbiomed.2024.108791},
+  abstract = {INTRODUCTION: Traumatic bone marrow lesions (BML) are frequently identified on knee MRI scans in patients following an acute full-thickness, complete ACL tear. BMLs coincide with regions of elevated localized bone loss, and studies suggest these may act as a precursor to the development of post-traumatic osteoarthritis. This study addresses the labour-intensive manual assessment of BMLs by using a 3D U-Net for automated identification and segmentation from MRI scans. METHODS: A multi-task learning approach was used to segment both bone and BML from T2 fat-suppressed (FS) fast spin echo (FSE) MRI sequences for BML assessment. Training and testing utilized datasets from individuals with complete ACL tears, employing a five-fold cross-validation approach and pre-processing involved image intensity normalization and data augmentation. A post-processing algorithm was developed to improve segmentation and remove outliers. Training and testing datasets were acquired from different studies with similar imaging protocol to assess the model's performance robustness across different populations and acquisition conditions. RESULTS: The 3D U-Net model exhibited effectiveness in semantic segmentation, while post-processing enhanced segmentation accuracy and precision through morphological operations. The trained model with post-processing achieved a Dice similarity coefficient (DSC) of 0.75~±~0.08 (mean~±~std) and a precision of 0.87~±~0.07 for BML segmentation on testing data. Additionally, the trained model with post-processing achieved a DSC of 0.93~±~0.02 and a precision of 0.92~±~0.02 for bone segmentation on testing data. This demonstrates the approach's high accuracy for capturing true positives and effectively minimizing false positives in the identification and segmentation of bone structures. CONCLUSION: Automated segmentation methods are a valuable tool for clinicians and researchers, streamlining the assessment of BMLs and allowing for longitudinal assessments. This study presents a model with promising clinical efficacy and provides a quantitative approach for bone-related pathology research and diagnostics.},
+  langid = {english},
+  keywords = {3D U-Net model,Adult,Anterior cruciate ligament (ACL) tear,Anterior Cruciate Ligament Injuries,Automated segmentation,Bone Marrow,Deep Learning,Deep learning (DL),Female,Humans,Image Interpretation Computer-Assisted,Knee osteoarthritis (OA),Magnetic Resonance Imaging,Magnetic resonance imaging (MRI),Male,Multi-task learning,Traumatic bone marrow lesions (BML)}
 }
 
 @article{tustisonN4ITKImprovedN32010,

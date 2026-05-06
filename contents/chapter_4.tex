@@ -9,7 +9,7 @@
     这两种序列在灰度分布、组织对比度和噪声模式上存在巨大的域偏移。
     如果直接将OAI上训练的U-Net应用于孤立前交叉韧带和多发韧带损伤的FSE数据，由于数据分布不匹配，分割精度通常会明显下降。
     \par 为了在缺乏本地专家标注的情况下实现精准分割，本研究引入了无监督域适应（UDA）技术，
-    并先后探索了基于图像级对齐的CycleGAN与基于特征级对齐的DANN。
+    并先后探索了基于图像级对齐的CycleGAN\cite{zhuUnpairedImagetoImageTranslation2017}与基于特征级对齐的DANN\cite{ganinDomainAdversarialTrainingNeural2017}。
   \subsection{基于图像级对齐的尝试：CycleGAN}
     \subsubsection{方法原理}
       在研究初期，本研究首先尝试了主流的图像翻译模型 Cycle-Consistent Generative Adversarial Networks (CycleGAN)。
@@ -84,7 +84,7 @@
   \subsection{UDA任务中判别器收敛过快导致生成器梯度消失}
     在本项目中，源域的 DESS 序列与目标域带有脂肪抑制的 FSE 序列在底层灰度分布、信噪比以及对比度风格上存在极其显著的视觉差异。
     这种巨大的域偏移（Domain Shift）导致了一个严重的训练失衡问题：域判别器的学习任务远比特征提取器的特征对齐任务简单。
-    \par 在网络训练的初始阶段，由 PatchGAN 构成的域判别器能够迅速捕获到这两种序列的纹理差异，
+    \par 在网络训练的初始阶段，由 PatchGAN\cite{isolaImagetoImageTranslationConditional2017} 构成的域判别器能够迅速捕获到这两种序列的纹理差异，
     导致其准确率迅速逼近 100\%，域分类损失（$L_{\mathrm{adv}}$）急剧下降。
     根据生成式对抗网络（GAN）的理论基础，当判别器达到完美判别状态时，其输出概率将极度趋近于 0 或 1。
     此时，判别器传递给梯度反转层（GRL）的梯度将趋近于零，即发生了严重的梯度消失现象。

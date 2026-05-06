@@ -27,7 +27,7 @@
     在膝关节影像中，软骨与骨髓病变（BML）的体素数量往往远少于背景及其他组织，存在极端的类别不平衡（Class Imbalance）问题。
     传统的交叉熵损失会主导网络偏向于预测背景，而 Dice 损失通过全局计算预测掩膜与真实标签的重叠率，极大地提升了网络对软骨等小目标结构的分割灵敏度。
   \subsection{网络变体、自适应框架与多平面策略}
-    随着算法的演进，研究者在基础 U-Net 的框架上衍生出了众多变体。
+    随着算法的演进，研究者在基础 U-Net 的框架上衍生出了众多变体\cite{kesslerOptimisationDeepNeural2020}。
     例如，研究表明基于 SegNet 变体的编解码器架构在骨与软骨的分割中同样能够实现高精度的特征还原。
     近年来，Isensee 等人提出的 nnU-Net（No-New-Net）框架更是通过自适应配置预处理、网络拓扑及后处理策略，在包括膝关节在内的数十项医学图像分割挑战中确立了最新的性能基准（State-of-the-Art, SOTA）\cite{isenseeAbstractNnUNetSelfadapting2019}。
     \par 然而，在处理高分辨率膝关节三维MRI时，直接采用全3D网络（如3D U-Net）面临着巨大的图形处理器（Graphics Processing Unit, GPU）显存开销限制，而传统的单平面2D网络又缺乏空间上下文信息。
