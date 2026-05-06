@@ -1,3 +1,103 @@
 % !TEX root = ../main.tex
 
 \chapter{基于多向高分辨率融合与三维重建的探索}
+  在第四章中，本研究基于二维单平面（Sagittal）成功构建了改进型DANN域对抗网络，并取得了优异的分割结果。
+  然而，临床常规的FSE序列在层间存在较大的物理间距，这种各向异性（Anisotropy）导致在生成三维模型时极易出现阶梯状断层伪影（Step artifacts），
+  限制了对软骨厚度及微小骨髓病变（BML）的精准三维拓扑分析。
+  为此，本章致力于探索一种无监督的多视图融合策略，旨在利用矢状面、冠状面和轴状面的互补信息，
+  重建出0.5mm的各向同性（Isotropic）高分辨率体积，并在此基础上进行了初步的三维全局分割尝试。
+
+\section{基于深度图像先验（DIP）的多向融合重建}
+  在缺乏高分辨率金标准（Ground Truth）的临床数据集中，传统的监督学习超分辨率方法无法适用。本节详细回顾了从经典的迭代重建到最终引入深度图像先验（Deep Image Prior, DIP）算法的完整方法论演进。
+  \subsection{刚性配准与B样条算法融合}
+    在进行多平面体积融合之前，首要解决的是空间不对齐问题。
+    由于患者在接受矢状面、冠状面和轴状面扫描的间隙，不可避免地会发生轻微的肢体平移或肌肉抽动，直接融合会导致严重的解剖结构错位。
+    \par 本研究首先将面内分辨率最高的矢状面影像设为固定参考空间（Fixed Image），将冠状面和轴状面设为浮动图像（Moving Image）。
+    配准过程分为两步：
+    \subsubsection{基于归一化互信息的全局刚性配准}
+      本研究将面内分辨率最高的矢状面影像设为固定参考空间（Fixed Image，$I_{fixed}$），将冠状面和轴状面设为浮动图像（Moving Image，$I_{moving}$）。
+      在三维空间中，刚性变换（Rigid Transformation）$T_{rigid}$ 是一种保距且保角的几何映射，其数学模型由一个 $3\times 3$ 的正交旋转矩阵 $\mathbf{R}$ 和一个 $3\times 1$ 的平移向量 $\mathbf{t}$ 构成。对于浮动图像中的任意体素坐标 $x=\left(x,y,z\right)^T$，其映射到参考空间的新坐标 $x^\prime$
+      \begin{equation}
+        x^\prime = T_{rigid}(x) = \mathbf{R}x + \mathbf{t}
+      \end{equation}
+      \par 其中，旋转矩阵 $\mathbf{R}$ 是围绕三维坐标系X轴（Roll）、Y轴（Pitch）和Z轴（Yaw）旋转角度的线性组合矩阵。
+      \par 为了求解最优的变换参数，算法需要最大化两幅图像之间的统计学相似度。本研究采用了归一化互信息（Normalized Mutual Information, NMI）作为优化的目标函数。
+      NMI基于信息论中的香农熵（Shannon Entropy）构建，其定义为：
+      \begin{equation}
+        NMI(I_{fixed}, I_{moving}) = \frac{H(I_{fixed}) + H(I_{moving})}{H(I_{fixed}, I_{moving})}
+      \end{equation}
+      \par 其中，$H\left(\cdot\right)$ 表示单幅图像的边缘信息熵，$H\left(I_{fixed},I_{moving}\right)$ 为两幅交叉平面图像的联合信息熵。
+      与基于像素均方差的方法不同，NMI 能够极其稳健地处理不同扫描平面间由于层厚容积效应和射频伪影带来的灰度非线性偏移。
+      通过梯度下降法迭代寻找使 NMI 最大化的 $\mathbf{R}$ 和 $\mathbf{t}$，系统得以精确校正患者的宏观体位偏移。
+    \subsubsection{基于B样条自由形变的非刚性微调}
+      在刚性配准校正了整体位移后，考虑到膝关节受压形变及肌肉松弛带来的微小局部非刚性位移，本研究进一步引入了B样条自由形变（FFD）算法进行体素级微调。
+      \par FFD模型通过在三维图像域 $\Omega$ 上叠加一个均匀分布的控制点网格（Control Point Grid）$\Phi$ 来驱动空间形变。
+      对于图像域内的任意点 $\mathbf{x}$ ，设定其在局部网格中的相对坐标为 $\left(u,v,w\right)$，则该点受到周围 $4 times 4 times 4$ 个邻域控制点位移的联合影响。
+      其局部非刚性形变 $T_{local}\left(\mathbf{x}\right)$ 通过三次B样条基函数（Cubic B-spline basis functions）的三维张量积来计算：
+      \begin{equation}
+        T_{local}\left(\mathbf{x}\right) = \sum_{l=0}^{3} \sum_{m=0}^{3} \sum_{n=0}^{3} B_l(u) B_m(v) B_n(w) \Phi_{i+l, j+m, k+n}
+      \end{equation}
+      \par 式中，$B_l,B_m,B_n$ 分别代表三个坐标轴方向上的标准三次B样条多项式，$\Phi$ 为控制点的位移向量。
+      由于三次B样条函数天然具有 $C^2$ 的二阶导数连续性，该数学模型从理论上保证了生成的全域位移场是高度平滑且拓扑保持的（Topology-preserving）。
+      这使得算法在将三个平面的骨-软骨交界面实现亚像素级精确对齐的同时，能够有效避免解剖结构的撕裂或折叠伪影，
+      为后续的 DIP 高分辨率重建提供了极其可靠的几何空间约束。
+      \begin{figure}[!htp]
+        \centering
+        \includegraphics[width=0.8\linewidth]{figures/registration_bspline.png}
+        \caption{基于B样条算法的非刚性配准结果示例}
+        \label{fig:registration_bspline}
+      \end{figure}
+  \subsection{迭代重建算法}
+    在完成空间对齐后，本研究初步探索了经典的切片到体积重建（Slice-to-Volume Reconstruction, SVR）的迭代算法。
+    该算法将高分辨率体积的生成视为一个逆问题（Inverse Problem）。
+    \par 其数学核心在于建立一个前向物理退化模型：
+    \begin{equation}
+      \mathbf{y}_k=\mathbf{A}_k \mathbf{x}+\mathbf{n}_k
+    \end{equation}
+    其中 $\mathbf{x}$ 为理想的高分辨率体积，$\mathbf{y}_k$ 为第 k 个视角的低分辨率输入切片，
+    $\mathbf{A}_k$ 代表包含模糊（点扩散函数 PSF）、降采样和空间变换的系统矩阵，$\mathbf{n}_k$ 为噪声。
+    在求解过程中，算法利用梯度下降法或共轭梯度法，迭代最小化重建图像与原始切片之间的残差。
+    为了抑制逆问题求解过程中的噪声放大，通常会引入全变分（Total Variation, TV）或拉普拉斯正则化项来保护软骨边缘的锐度。
+    \begin{figure}[!htp]
+      \centering
+      \includegraphics[width=0.8\linewidth]{figures/iteration_reconstruction.png}
+      \caption{基于迭代重建算法的高分辨率体积重建结果示例。可以明显看到重建的体积在三个平面上实现了亚像素级的精确对齐，极大地减少了后续重建中的阶梯状伪影。}
+      \label{fig:iteration_reconstruction}
+    \end{figure}
+  \subsection{NiftyMIC重建工具库}
+    为了快速验证上述迭代重建算法在膝关节数据上的可行性，本研究引入了在胎儿MRI脑部重建领域极其著名的开源工具库 NiftyMIC。
+    \par NiftyMIC 采用两步迭代法，交替执行“切片到体积的刚性配准”与“超分辨率重建（SRR）循环”。
+    本研究将预处理后的三平面 FSE 数据输入该管线，但实验结果表明，NiftyMIC 在膝关节场景下存在一定的局限性：
+    \par 首先，膝关节软骨是极薄的曲面结构，而胎儿脑部相对圆润。
+    NiftyMIC 基于离散体素网格的传统优化方式，在处理具有不同对比度特征的 FSE 序列时，容易在正交平面的交叉处产生网格状或阶梯状伪影。
+    \par 其次，该工具库的迭代优化过程计算开销极大，难以满足本研究多达 665 例海量数据的批量处理需求。
+    \begin{figure}[!htp]
+      \centering
+      \includegraphics[width=0.8\linewidth]{figures/niftymic.png}
+      \caption{NiftyMIC 在膝关节数据上的重建结果示例。可以看到重建分辨率甚至不如原始输入切片。}
+      \label{fig:niftymic}
+    \end{figure}
+  \subsection{深度图像先验 (DIP) 在重建中的应用}
+    鉴于传统 SVR 方法的局限性，本研究最终转向了基于深度图像先验（Deep Image Prior, DIP）的无监督重建策略。
+    DIP 的核心理论在于：卷积神经网络（CNN）如 U-Net 的拓扑结构本身，在随机初始化状态下就内化了强大的底层自然图像统计先验，
+    无需任何外部数据集即可作为极佳的正则化器。
+    \par 在本研究的具体实现中：
+    \begin{itemize}
+      \item 网络输入与输出：构建一个 3D U-Net 作为生成器，其输入为固定的三维随机噪声张量，输出为预测的 $0.5$ mm 各向同性高分辨率体积。
+      \item 自驱动优化过程：在每次前向传播后，利用物理退化算子将生成的 3D 高分辨率体积分别“投影”回矢状、冠状和轴状三个平面的低分辨率网格上。
+      \item 损失反向传播： 计算这些投影与经过 5.1.1 节刚性对齐后的真实 FSE 切片之间的均方误差（MSE）。网络通过反向传播仅更新自身的权重。由于 DIP 网络具有抗拒高频噪声、倾向于拟合连续低频解剖结构的特性，随着迭代的进行，网络在隐层空间中自然地融合了三个视角的互补信息，有效地“填补”了层间的断层。最终，该方法成功输出了具有平滑、连续软骨边界的高保真三维等距影像。
+    \end{itemize}
+    \begin{figure}[!htp]
+      \centering
+      \includegraphics[width=0.8\linewidth]{figures/dip_reconstruction.png}
+      \caption{DIP 在膝关节数据上的重建结果示例}
+      \label{fig:dip_reconstruction}
+    \end{figure}
+
+\section{基于2.5D U-Net的全局定位与粗分割}
+  在成功获取 DIP 融合后的 $0.5$ mm 各向同性高分辨率体积后，本研究原计划构建一条“粗定位-形态学约束-局部精细分割”的三维分割管线。
+  \par 首先，本研究开发了基于 2.5D U-Net 的全局粗分割网络。相比于直接处理庞大的 3D 体积（容易导致 GPU 显存溢出），
+  2.5D U-Net 提取连续的几张切片（如 $t-8, t-7, \dots, t-1, t, t+1, \dots, t+7, t+8$，共 $17$ 张切片）
+  作为多通道输入。该网络在 DIP 融合后的高分辨率空间中，能够快速、准确地锁定股骨、胫骨以及软骨的全局空间位置。
+  \par 在粗定位的基础上，本研究尝试引入统计形状模型（SSM）对粗糙边界进行三维流形约束，并计划在边界上随机采样三维子体积（3D sub-volume）输入 3D U-Net 进行像素级微调。
+  然而，在实际工程推进中发现，由于膝关节三维边界拓扑极其复杂，且 SSM 的拟合过程对异常值较为敏感，导致最后一步的三维精细采样分割在计算效率和收敛稳定性上难以达到临床大批量处理的要求。
