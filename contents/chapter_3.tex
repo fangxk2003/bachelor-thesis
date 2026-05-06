@@ -4,12 +4,12 @@
 
 \section{实验数据集介绍}
   \subsection{OAI-ZIB 数据集}
-    OAI-ZIB数据集是膝关节医学影像研究领域中的“金标准”数据集之一。
-    OAI（Osteoarthritis Initiative）是美国的一个长达数年的前瞻性研究项目，旨在识别骨关节炎（Osteoarthritis , OA）的生物标志物。
-    它是由Zuse Institute Berlin（ZIB）在OAI原始数据库的基础上，筛选了507例膝关节病例，经过专家手工精细标注而形成的子集。
+    骨关节炎倡议-柏林祖斯研究所（Osteoarthritis Initiative-Zuse Institute Berlin, OAI-ZIB）数据集是膝关节医学影像研究领域中的“金标准”数据集之一。
+    OAI 是美国的一个长达数年的前瞻性研究项目，旨在识别骨关节炎（Osteoarthritis, OA）的生物标志物。
+    它是由柏林祖斯研究所（Zuse Institute Berlin, ZIB）在 OAI 原始数据库的基础上，筛选了507例膝关节病例，经过专家手工精细标注而形成的子集。
     该数据集提供了极高空间分辨率的三维解剖信息，具体为 \qty{0.7000}{\milli\metre} $\times$ \qty{0.3646}{\milli\metre} $\times$ \qty{0.3646}{\milli\metre}是开发和验证自动分割、定量软骨分析算法的主流选择。
     \subsubsection{DESS 序列的技术原理}
-      OAI-ZIB 数据集的采集主要基于 3D DESS 序列\cite{peterfyOsteoarthritisInitiativeReport2008}。
+      OAI-ZIB 数据集的采集主要基于三维双回波稳态（3D Double Echo Steady-State, 3D DESS）序列\cite{peterfyOsteoarthritisInitiativeReport2008}。
       这是膝关节扫描中最具代表性的序列之一。
       DESS 序列是一种梯度回波（Gradient Recalled Echo, GRE）技术。
       在 DESS 序列中，由于重复时间（Repetition Time, TR）短于组织的纵向弛豫时间 $T_1$ 和横向弛豫时间 $T_2$，系统在单次激发后无法恢复至初始的热平衡状态。
@@ -17,7 +17,7 @@
       此时，每一次脉冲都会产生两个截然不同的信号部分。
       \par DESS 的核心在于，在一个TR周期内同时采集两个（或更多）回波信号（$S^+$ 和 $S^-$），通过合并这些信号，可以获得极高的信噪比。
       $S^+$ 信号是在激发脉冲后立即产生的自由感应衰减（Free Induction Decay, FID）信号，其对比度特征主要受 $T_1/T_2^\ast$ 影响，
-      具有较高的信噪比（Signal Noise Ratio, SNR），但对 $T_2$ 的对比度相对较弱。
+      具有较高的信噪比（Signal-to-Noise Ratio, SNR），但对 $T_2$ 的对比度相对较弱。
       $S^-$ 信号是由于后续脉冲对之前残余的横向磁化矢量进行回聚形成的回波信号，经过了较长的时间，具有极强的 $T_2$ 权重，对关节积液和软骨的信号非常敏感。
       \par DESS 序列通过以下公式合成最终信号 $S$，既保留了 $S^+$ 的高信噪比，
       又增强了 $S^-$ 的强烈 $T_2$ 对比度，使得软骨呈现中等偏高信号，而滑液呈现极高信号，形成了极其清晰的界面。
@@ -33,7 +33,7 @@
     \subsubsection{OAI-ZIB 数据集的分割掩膜与关键参数}
       OAI-ZIB 数据集包含了 507 例受试者的基线期膝关节三维磁共振影像。
       这些影像均采用西门子 3.0T 磁共振扫描仪（Siemens 3.0T Trio scanners）获取，
-      扫描序列为矢状面三维双回波稳态（3D Sagittal Double Echo Steady-State, DESS）序列。
+      扫描序列为矢状面 3D DESS 序列。
       \par 在物理空间参数方面，该数据集具有极高的分辨率配置，为模型提取微小软骨边界提供了充足的像素信息。
       每个三维体积数据（Volume）由 160 张连续的矢状面切片构成，单张切片的矩阵尺寸统一为 384×384 像素。
       其物理体素间距（Voxel Spacing）呈现高度的面内各向同性，具体尺寸为 \qty{0.3645}{\milli\metre} $\times$ \qty{0.3645}{\milli\metre}，层厚（Slice Thickness）为 \qty{0.7}{\milli\metre}。
@@ -209,7 +209,6 @@
         而且在后续利用阈值法或生成式模型提取 BML 时，使得原本微弱的水肿高信号在统计学分布上得以显著放大并更易于被网络捕获。
         \par 经过上述 DICOM 转换、N4 偏置场校正、空间重采样以及 Z-score 归一化处理，本研究成功将 665 例规格杂乱的临床多维数据转化为了结构高度统一的高质量特征张量。
         这为第四章改进型 DANN 网络进行跨域特征博弈与精准分割提供了极其纯净的数据基石。
-
 
 
 

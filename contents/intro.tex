@@ -8,29 +8,29 @@
   且常伴随半月板及软骨的继发性损伤\cite{spindlerClinicalPracticeAnterior2008}。
   相比之下，多发韧带膝关节损伤（Multi-Ligament Knee Injury, MLKI）虽然仅占膝关节韧带损伤的一小部分（约2.5\%）\cite{wilsonEpidemiologyMultiligamentKnee2014}，
   但其致伤原因多为车祸等高能创伤，往往导致严重的关节失稳，需要更为复杂的手术重建干预\cite{moatsheDiagnosisTreatmentMultiligament2017}。
-  这两种损伤不仅在急性期严重影响患者的运动功能，更是诱发创伤后骨关节炎（PTOA）的关键危险因素\cite{lohmanderLongtermConsequenceAnterior2007, snoekerRiskKneeOsteoarthritis2020}。
-  \par 在疾病诊断与预后预测中，磁共振成像（MRI）凭借其卓越的软组织对比度，已成为评估膝关节状态的临床“金标准”。
-  特别是基于高精度三维MRI分割提取的定量指标（如软骨三维厚度分布\cite{ecksteinMagneticResonanceImaging2006}、骨髓病变（BML）的绝对体积\cite{felsonAssociationBoneMarrow2001}等），在早期捕捉OA不可逆的微观退变、评估手术疗效以及预测患者长远临床结局方面，展现出了不可替代的临床价值。
+  这两种损伤不仅在急性期严重影响患者的运动功能，更是诱发创伤后骨关节炎（Post-traumatic Osteoarthritis, PTOA）的关键危险因素\cite{lohmanderLongtermConsequenceAnterior2007, snoekerRiskKneeOsteoarthritis2020}。
+  \par 在疾病诊断与预后预测中，磁共振成像（Magnetic Resonance Imaging, MRI）凭借其卓越的软组织对比度，已成为评估膝关节状态的临床“金标准”。
+  特别是基于高精度三维 MRI 分割提取的定量指标（如软骨三维厚度分布\cite{ecksteinMagneticResonanceImaging2006}、骨髓病变（Bone Marrow Lesions, BML）的绝对体积\cite{felsonAssociationBoneMarrow2001}等），在早期捕捉骨关节炎（Osteoarthritis, OA）不可逆的微观退变、评估手术疗效以及预测患者长远临床结局方面，展现出了不可替代的临床价值。
   \par 然而，要实现这些高维指标的自动化提取，面临着显著的临床挑战。
-  首先是手动标注的极高时间成本：膝关节包含极其微小且复杂的软骨曲面和弥漫性BML，
-  放射科专家手动勾画单例三维高分辨率MRI往往需要耗费数小时，且存在显著的观察者间变异性。
-  其次，当前基于深度学习的监督模型泛化性极差：不同医院、不同扫描仪及不同序列（如DESS与常规非脂抑FSE序列）之间存在巨大的数据分布差异（Domain Shift）。
-  由于真实的临床FSE海量数据完全缺乏专家标注，传统的监督学习网络在此类目标域数据上会发生灾难性的特征遗忘与性能崩溃。
+  首先是手动标注的极高时间成本：膝关节包含极其微小且复杂的软骨曲面和弥漫性 BML，
+  放射科专家手动勾画单例三维高分辨率 MRI 往往需要耗费数小时，且存在显著的观察者间变异性。
+  其次，当前基于深度学习的监督模型泛化性极差：不同医院、不同扫描仪及不同序列（如双回波稳态（Double Echo Steady-State, DESS）与常规非脂抑快速自旋回波（Fast Spin Echo, FSE）序列）之间存在巨大的数据分布差异（Domain Shift）。
+  由于真实的临床 FSE 海量数据完全缺乏专家标注，传统的监督学习网络在此类目标域数据上会发生灾难性的特征遗忘与性能崩溃。
   因此，开发一种无需目标域标注、且能克服跨序列域偏移的自动化高精度分割量化管线，已成为精准运动医学与骨科临床的迫切刚需。
 
 \section{医学图像分割与无监督域适应技术现状}
   随着深度学习（Deep Learning）在计算机视觉领域的飞速发展，基于卷积神经网络（如U-Net、V-Net及其变体）的医学图像分割技术已在学术界确立了性能基准。
-  然而，针对前述的临床“无标签”及“域偏移”痛点，研究热点正迅速向无监督域适应（UDA）技术转移。
-  UDA旨在利用带有标签的源域数据（如公开的OAI数据集）训练模型，并通过特征级对齐（如DANN）或图像级翻译（如CycleGAN），使模型在无标签的目标临床数据上依然能够保持高精度的分割能力，这为激活海量临床“沉睡数据”提供了技术可能。
+  然而，针对前述的临床“无标签”及“域偏移”痛点，研究热点正迅速向无监督域适应（Unsupervised Domain Adaptation, UDA）技术转移。
+  UDA旨在利用带有标签的源域数据（如公开的骨关节炎倡议（Osteoarthritis Initiative, OAI）数据集）训练模型，并通过特征级对齐（如域对抗神经网络（Domain-Adversarial Neural Network, DANN））或图像级翻译（如CycleGAN），使模型在无标签的目标临床数据上依然能够保持高精度的分割能力，这为激活海量临床“沉睡数据”提供了技术可能。
 
 \section{本文的主要工作与创新点}
-  本文针对临床海量无标注的膝关节FSE序列，构建并验证了一套以无监督域适应分割为核心的三维定量分析管线。主要工作如下：
+  本文针对临床海量无标注的膝关节 FSE 序列，构建并验证了一套以无监督域适应分割为核心的三维定量分析管线。主要工作如下：
   \subsection{提出基于2D U-Net改进的域适应分割模型}
-    针对跨序列分布差异，提出了一种改进的DANN域对抗模型。
-    通过引入实例归一化（IN）消除底层对比度风格差异，并结合空洞空间金字塔池化（ASPP）捕捉软骨全局拓扑。
-    同时，设计了基于损失比率的动态冻结策略，用于缓解对抗训练中判别器收敛过快导致的训练失衡问题，实现了FSE序列上骨与软骨的自动提取。
+    针对跨序列分布差异，提出了一种改进的 DANN 域对抗模型。
+    通过引入实例归一化（Instance Normalization, IN）消除底层对比度风格差异，并结合空洞空间金字塔池化（Atrous Spatial Pyramid Pooling, ASPP）捕捉软骨全局拓扑。
+    同时，设计了基于损失比率的动态冻结策略，用于缓解对抗训练中判别器收敛过快导致的训练失衡问题，实现了 FSE 序列上骨与软骨的自动提取。
   \subsection{探索基于超分辨率融合的三维重建方法}
-    针对临床FSE序列层间分辨率低导致的各向异性断层问题，本研究在不依赖外部高分辨率标签对的情况下，创新性地结合刚性空间配准与深度图像先验（DIP）算法，
+    针对临床 FSE 序列层间分辨率低导致的各向异性断层问题，本研究在不依赖外部高分辨率标签对的情况下，创新性地结合刚性空间配准与深度图像先验（Deep Image Prior, DIP）算法，
     利用神经网络自身的底层统计学先验，探索了多视角二维切片向 \qty{0.5}{\milli\metre} 各向同性三维体积融合重建的可行性。
   \subsection{通过软骨厚度和 BML 体积等临床指标对比 ACL 和 MLKI 的损伤模式差异}
     开发了基于欧氏距离变换的软骨厚度映射与基于kd-tree的关节接触面计算工具。

@@ -30,14 +30,14 @@
     随着算法的演进，研究者在基础 U-Net 的框架上衍生出了众多变体。
     例如，研究表明基于 SegNet 变体的编解码器架构在骨与软骨的分割中同样能够实现高精度的特征还原。
     近年来，Isensee 等人提出的 nnU-Net（No-New-Net）框架更是通过自适应配置预处理、网络拓扑及后处理策略，在包括膝关节在内的数十项医学图像分割挑战中确立了最新的性能基准（State-of-the-Art, SOTA）\cite{isenseeAbstractNnUNetSelfadapting2019}。
-    \par 然而，在处理高分辨率膝关节三维MRI时，直接采用全3D网络（如3D U-Net）面临着巨大的GPU显存开销限制，而传统的单平面2D网络又缺乏空间上下文信息。
+    \par 然而，在处理高分辨率膝关节三维MRI时，直接采用全3D网络（如3D U-Net）面临着巨大的图形处理器（Graphics Processing Unit, GPU）显存开销限制，而传统的单平面2D网络又缺乏空间上下文信息。
     因此，“2.5D切片融合”与“多平面网络（Multi-Planar Networks）”成为平衡计算成本与分割精度的重要方向。
     例如，Multi-Planar U-Net 等架构通过将包含目标体素的二维切片沿矢状面、冠状面和轴状面（Sagittal, Coronal, Axial）三个正交视角分别提取并输入平行的 2D 网络，最后在输出端进行多视角预测特征的三维融合（Multi-view Fusion）\cite{ryuMultiplanar25DUNet2023} 。
 
 \section{医学图像的域适应技术}
   \subsection{基于图像翻译的生成式模型 CycleGAN}
     图像翻译（Image Translation）是图像域适应领域（Domain Adaptation, DA） 的重要分支。其中大部分技术都需要成对的训练数据，但这在医学图像领域非常稀缺。
-    CycleGAN（Cycle-Consistent Adversarial Networks）\cite{zhuUnpairedImagetoImageTranslation2017}凭借无需成对的训练数据的特性，被广泛应用在跨模态或跨中心的医学影像迁移（如 MRI 到 CT\cite{wolterinkDeepMRCT2017a}）。
+    CycleGAN（Cycle-Consistent Adversarial Networks）\cite{zhuUnpairedImagetoImageTranslation2017}凭借无需成对的训练数据的特性，被广泛应用在跨模态或跨中心的医学影像迁移（如 MRI 到计算机断层扫描（Computed Tomography, CT）\cite{wolterinkDeepMRCT2017a}）。
     该模型通过引入循环一致性损失（Cycle-consistency Loss），约束了源域图像在经过双向映射后能够回到原始状态，从而实现了非成对数据上的风格迁移。
     \begin{figure}[!htp]
       \centering
