@@ -6,11 +6,11 @@
   然而，目前的分析面临严重痛点：全像素手动标注时间成本较高，且不同扫描序列间的域偏移导致传统监督模型泛化性能显著下降。
   针对上述问题，本文开发了一套无监督/极少监督的深度学习膝关节MRI分割与三维量化分析管线。
   \par 在分割层面，提出了一种改进的域对抗神经网络（Domain Adversarial Neural Network, DANN）。
-  通过引入实例归一化（Instance Normalization, IN）滤除对比度风格差异，结合空洞空间金字塔池化（Atrous Spatial Pyramid Pooling, ASPP）增强微小软骨的全局感知，并创新性设计了动态冻结对抗训练策略，在无标签快速自旋回波（Fast Spin Echo, FSE）数据上实现了高精度的跨序列特征迁移。
-  在重建层面，结合刚性配准与深度图像先验（Deep Image Prior, DIP）算法，实现了多视图数据的0.5mm各向同性高保真融合。
-  \par 在临床应用层面，开发了自动形态学量化工具，并对近600例患者进行了统计学分析。
-  结果揭示：相比于孤立ACL撕裂的局灶性高压撞击，MLKI患者的胫股关节接触面积显著锐减、软骨厚度损耗较轻，但BML体积呈极显著的弥漫性扩张（p<0.001）。
-  该发现从客观数据层面强有力地验证了高能创伤的“能量耗散”假说与“软骨保护”效应，为创伤机制解析提供了全新的AI方法学范式。
+  通过引入实例归一化（Instance Normalization, IN）滤除对比度风格差异，结合空洞空间金字塔池化（Atrous Spatial Pyramid Pooling, ASPP）增强微小软骨的全局感知，并设计动态冻结对抗训练策略，在无标签快速自旋回波（Fast Spin Echo, FSE）数据上获得了较稳定的跨序列特征迁移效果。
+  在重建层面，结合刚性配准与深度图像先验（Deep Image Prior, DIP）算法，探索了多视图数据向 \qty{0.5}{\milli\metre} 各向同性体积融合的可行性。
+  \par 在临床应用层面，开发了自动形态学量化工具，并对经过质量控制后的 \num{579} 例患者进行了统计学分析。
+  结果显示：相比于孤立ACL撕裂，MLKI患者的胫股关节接触面积显著降低，BML体积显著增大（p<0.001）。
+  该发现从定量影像层面提示了两类损伤在关节空间关系与骨髓水肿范围上的差异，为后续进一步验证高能创伤相关的“能量耗散”假说提供了初步依据。
 \end{abstract}
 
 \begin{abstract}[en]
@@ -19,8 +19,8 @@
   However, full-pixel manual annotation is highly time-consuming, and domain shift between scanning sequences degrades the generalization of supervised models.
   To address these limitations, this thesis proposes an unsupervised/few-shot deep learning pipeline for knee MRI segmentation and 3D quantitative analysis.
   \par For segmentation, an improved Domain Adversarial Neural Network (DANN) is proposed.
-  By integrating Instance Normalization (IN) and Atrous Spatial Pyramid Pooling (ASPP), along with a novel dynamic freezing adversarial training strategy, the model achieves high-precision cross-sequence feature migration on unlabeled fast spin echo (FSE) data.
-  For reconstruction, combining rigid registration with the Deep Image Prior (DIP) algorithm enables 0.5mm isotropic high-fidelity fusion of multi-view data without high-resolution labels.
-  \par Clinically, automated morphological quantification tools were created to analyze nearly 600 patients. The results revealed that compared to the focal impact of isolated ACL tears, MLKI patients exhibited a significantly reduced joint contact area and milder cartilage loss, but a highly significant diffuse expansion in BML volume (p<0.001).
-  These findings robustly validate the "energy dissipation" hypothesis and cartilage protection effect in high-energy trauma, establishing a novel AI paradigm for orthopedic imaging analysis.
+  By integrating Instance Normalization (IN) and Atrous Spatial Pyramid Pooling (ASPP), along with a dynamic freezing adversarial training strategy, the model obtains stable cross-sequence feature transfer on unlabeled fast spin echo (FSE) data.
+  For reconstruction, rigid registration combined with the Deep Image Prior (DIP) algorithm was explored as a feasible route toward 0.5mm isotropic multi-view fusion without high-resolution labels.
+  \par Clinically, automated morphological quantification tools were created to analyze 579 patients after quality control. The results showed that MLKI patients exhibited a significantly reduced joint contact area and a significantly larger BML volume than isolated ACL patients (p<0.001).
+  These findings suggest quantitative differences in joint spatial relationships and bone marrow edema extent between the two injury patterns, providing preliminary evidence for future validation of the energy-dissipation hypothesis in high-energy trauma.
 \end{abstract}
