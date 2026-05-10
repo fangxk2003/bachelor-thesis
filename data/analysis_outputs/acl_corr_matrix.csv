@@ -1,0 +1,4 @@
+,avg_bml_mm3_per_slice,avg_thickness_mm,contact_area_mm2
+avg_bml_mm3_per_slice,1.0,-0.09781946195313913,-0.4392253813907389
+avg_thickness_mm,-0.09781946195313913,1.0,-0.1549513573867639
+contact_area_mm2,-0.4392253813907389,-0.1549513573867639,1.0
