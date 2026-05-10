@@ -29,7 +29,7 @@
   \subsection{网络变体、自适应框架与多平面策略}
     随着算法的演进，研究者在基础 U-Net 的框架上衍生出了众多变体\cite{kesslerOptimisationDeepNeural2020}。
     例如，研究表明基于 SegNet 变体的编解码器架构在骨与软骨的分割中同样能够实现较好的特征还原。
-    近年来，Isensee 等人提出的 nnU-Net（No-New-Net）框架更是通过自适应配置预处理、网络拓扑及后处理策略，在包括膝关节在内的数十项医学图像分割挑战中确立了最新的性能基准（State-of-the-Art, SOTA）\cite{isenseeAbstractNnUNetSelfadapting2019}。
+    近年来，Isensee 等人提出的 nnU-Net（No-New-Net）框架更是通过自适应配置预处理、网络拓扑及后处理策略，在包括膝关节在内的数十项医学图像分割挑战中确立了最新的性能基准（State-of-the-Art, SOTA）\cite{isenseeNnUNetSelfconfiguringMethod2021}。
     \par 然而，在处理高分辨率膝关节三维MRI时，直接采用全3D网络（如3D U-Net）面临着较大的图形处理器（Graphics Processing Unit, GPU）显存开销限制，而传统的单平面2D网络又缺乏空间上下文信息。
     因此，“2.5D切片融合”与“多平面网络（Multi-Planar Networks）”成为平衡计算成本与分割精度的重要方向。
     例如，Multi-Planar U-Net 等架构通过将包含目标体素的二维切片沿矢状面、冠状面和轴状面（Sagittal, Coronal, Axial）三个正交视角分别提取并输入平行的 2D 网络，最后在输出端进行多视角预测特征的三维融合（Multi-view Fusion）\cite{ryuMultiplanar25DUNet2023} 。

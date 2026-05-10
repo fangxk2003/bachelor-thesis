@@ -4,9 +4,9 @@
   前交叉韧带（Anterior Cruciate Ligament, ACL）孤立性撕裂与多发韧带膝关节损伤（Multi-Ligament Knee Injury, MLKI）是诱发创伤后骨关节炎（Post-traumatic Osteoarthritis, PTOA）的核心危险因素。
   利用磁共振成像（Magnetic Resonance Imaging, MRI）对骨、软骨及骨髓病变（Bone Marrow Lesions, BML）相关影像指标进行三维定量评估，在早期诊断与预后分析中具有重要临床价值。
   然而，目前的分析仍面临一定挑战：全像素手动标注时间成本较高，且不同扫描序列间的域偏移可能导致传统监督模型泛化性能下降。
-  针对上述问题，本文开发了一套无监督/极少监督的深度学习膝关节MRI分割与三维量化分析管线，其中经人工测试集验证的核心分割任务为骨与软骨分割，BML部分主要定位为FSE高信号候选区域的自动检测、候选区域粗分割与体积量化。
+  针对上述问题，本文开发了一套基于无监督域适应训练的深度学习膝关节MRI分割与三维量化分析管线，并基于小规模人工标注目标域测试集进行验证。需要明确的是，本文经人工测试集验证的分割对象为骨与软骨；BML部分主要定位为FSE高信号候选区域的自动检测、候选区域粗分割与体积量化，尚不等同于经精细病灶标注验证的BML临床分割模型。
   \par 在分割层面，提出了一种改进的域对抗神经网络（Domain Adversarial Neural Network, DANN）。
-  通过引入实例归一化（Instance Normalization, IN）滤除对比度风格差异，结合空洞空间金字塔池化（Atrous Spatial Pyramid Pooling, ASPP）增强微小软骨的全局感知，并设计动态冻结对抗训练策略，在无标签快速自旋回波（Fast Spin Echo, FSE）数据上获得了较稳定的跨序列特征迁移效果。
+  通过引入实例归一化（Instance Normalization, IN）尝试滤除对比度风格差异，结合空洞空间金字塔池化（Atrous Spatial Pyramid Pooling, ASPP）设计多尺度上下文模块，并设计动态冻结对抗训练策略，探索在无标签快速自旋回波（Fast Spin Echo, FSE）数据上进行跨序列特征迁移的可行性。
   在重建层面，探索性结合刚性配准与深度图像先验（Deep Image Prior, DIP）算法，评估多视图数据向 \qty{0.5}{\milli\metre} 各向同性候选体积融合的可行性；该部分主要基于可视化和自一致性重投影思路进行方法探索，尚未形成系统的定量重建评价。
   \par 在临床应用层面，开发了自动形态学量化工具，并对经过质量控制后的 \num{579} 例患者进行了统计学分析。
   结果显示：相比于孤立ACL撕裂，MLKI患者的胫股关节影像近接触面积显著降低，BML候选高信号体积显著增大（p<0.001）。
@@ -18,9 +18,9 @@
   Isolated tears of the anterior cruciate ligament (ACL) and multi-ligament knee injuries (MLKI) are important risk factors for post-traumatic osteoarthritis (PTOA).
   Three-dimensional quantitative assessment of bone, cartilage, and imaging features related to bone marrow lesions (BML) using magnetic resonance imaging (MRI) holds clinical value for early diagnosis and prognosis.
   However, full-pixel manual annotation is time-consuming, and domain shift between scanning sequences may degrade the generalization of supervised models.
-  To address these limitations, this thesis proposes an unsupervised/few-shot deep learning pipeline for knee MRI segmentation and 3D quantitative analysis. The core segmentation task validated with manual annotations is bone and cartilage segmentation, whereas the BML component is positioned as automated detection, candidate-region coarse segmentation, and volume quantification of high-signal regions on FSE images.
+  To address these limitations, this thesis proposes a deep learning pipeline for knee MRI segmentation and 3D quantitative analysis based on unsupervised domain adaptation training, with validation performed on a small manually annotated target-domain test set. It should be clarified that the segmentation targets validated with manual annotations in this study are bone and cartilage, whereas the BML component is positioned as automated detection, candidate-region coarse segmentation, and volume quantification of high-signal regions on FSE images rather than a clinically validated fine BML lesion segmentation model.
   \par For segmentation, an improved Domain Adversarial Neural Network (DANN) is proposed.
-  By integrating Instance Normalization (IN) and Atrous Spatial Pyramid Pooling (ASPP), along with a dynamic freezing adversarial training strategy, the model obtains stable cross-sequence feature transfer on unlabeled fast spin echo (FSE) data.
+  By introducing Instance Normalization (IN), Atrous Spatial Pyramid Pooling (ASPP), and a dynamic freezing adversarial training strategy, this work explores the feasibility of cross-sequence feature transfer on unlabeled fast spin echo (FSE) data.
   For reconstruction, rigid registration combined with the Deep Image Prior (DIP) algorithm was explored as a candidate route toward 0.5mm isotropic multi-view fusion without high-resolution labels. This part remains exploratory and was mainly assessed through visual inspection and the self-consistency idea of projecting the generated volume back to the acquired views rather than through systematic quantitative reconstruction metrics.
   \par Clinically, automated morphological quantification tools were created to analyze 579 patients after quality control. The results showed that MLKI patients exhibited a significantly reduced image-based tibiofemoral near-contact area and a significantly larger candidate BML high-signal volume than isolated ACL patients (p<0.001).
   Because a large-scale manual BML ground truth was not established in this study, the candidate BML volume should be interpreted as an automated imaging-derived measure based on coarse candidate-region segmentation rather than a clinically validated fine lesion segmentation result.
