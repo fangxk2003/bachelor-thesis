@@ -1,0 +1,63 @@
+% !TEX root = ../main.tex
+
+\chapter{毕业设计（论文）中人工智能工具使用说明}
+\label{app:ai-tools}
+
+依据《上海交通大学关于在教育教学中使用 AI 的规范》的要求，为充分发挥“AI+HI（人工智能+人类智慧，Artificial Intelligence + Human Intelligence）”在毕业设计（论文）中的作用，特制定《毕业设计（论文）中人工智能工具使用说明》。
+该说明旨在支持人工智能工具在毕业设计（论文）中发挥辅助与启发功能，同时通过合理披露使用方式，确保毕业设计（论文）的完成过程中能够充分发挥“人类智慧”的作用，并符合科研诚信的要求。
+
+\section{本文使用的 AI 工具清单}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{>{\centering\arraybackslash}p{0.07\linewidth}
+                  >{\raggedright\arraybackslash}p{0.17\linewidth}
+                  >{\raggedright\arraybackslash}p{0.13\linewidth}
+                  >{\raggedright\arraybackslash}p{0.17\linewidth}
+                  >{\raggedright\arraybackslash}p{0.36\linewidth}}
+  \toprule
+  序号 & AI工具名称 & 版本/型号 & 应用部分 & 人为判断过程说明 \\
+  \midrule
+  1 & ChatGPT & GPT-4o & D1、D3、E3 & 对照实验流程、统计结果和导师反馈筛选，仅保留符合本文结论边界的表达。 \\
+  2 & DeepSeek & R1 & A2、D1、E1 & 通过原始论文、数据库页面和文献管理软件核对文献信息，未直接采用AI生成的参考文献。 \\
+  3 & GitHub Copilot & Copilot Chat & C2、C3 & 逐行检查代码逻辑，并通过小样本运行、输出文件核对和统计结果复算确认。 \\
+  4 & DeepL Write & Web版 & D3、E1 & 结合医学影像和深度学习领域常用表述人工筛选，确保未改变技术含义和实验结论。 \\
+  \bottomrule
+\end{longtable}
+\endgroup
+
+\section{毕业设计（论文）中应用部分对照表}
+\begingroup
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.16}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.23\linewidth}
+                  >{\raggedright\arraybackslash}p{0.67\linewidth}}
+  \toprule
+  阶段 & 编号与说明 \\
+  \midrule
+  A.研究准备阶段 & A1.选题与方向设定；A2.文献检索与筛选 \\
+  B.研究设计阶段 & B1.研究思路设计；B2.方法论构建；B3.研究工具开发 \\
+  C.研究实施阶段 & C1.实验/数据分析；C2.代码编写与调试；C3.数学建模与计算 \\
+  D.论文写作阶段 & D1.大纲与逻辑优化；D2.论文正文写作；D3.语言与语法润色 \\
+  E.其他辅助环节 & E1.参考文献与格式；E2.图表/多媒体生成；E3.学术反馈与模拟答辩 \\
+  \bottomrule
+\end{longtable}
+\endgroup
+
+\section{使用说明}
+1. A2：DeepSeek R1 用于辅助生成与 ``ACL tear''、``multi-ligament knee injury''、``bone marrow lesion''、``unsupervised domain adaptation'' 等主题相关的检索关键词和同义表达。
+作者随后在正式文献数据库中检索原文，并对文献题名、作者、期刊、年份和DOI等信息进行人工核验。
+
+2. C2、C3：GitHub Copilot 用于辅助生成或补全部分Python脚本，例如DICOM/NIfTI数据批处理、CSV统计分析、箱线图绘制和训练日志可视化等。
+所有AI建议代码均经过作者人工修改，并通过实际运行结果、人工抽查和与原始数据表对照确认后才用于论文分析。
+
+3. D1、D3：ChatGPT 用于辅助检查章节之间的逻辑衔接、压缩重复表述、润色中文段落和整理答辩可能问题。
+论文中的实验结果、统计数值、表格内容和研究结论均以作者实际实验输出为准，未由AI工具独立生成。
+
+4. E1：DeepSeek R1 和 DeepL Write 用于辅助参考文献格式检查、英文摘要和英文大摘要的语言润色。
+涉及专业术语、文献引用和结论性表述时，作者均结合原始文献、代码输出和导师意见进行人工判断。
+
+5. E3：ChatGPT 用于模拟评审可能关注的问题，例如消融实验不足、BML候选高信号体积解释边界、DIP重建未纳入最终统计等。
+作者据此补充研究局限性和未来工作说明，但所有修改均以本文实际完成的研究内容为依据。
