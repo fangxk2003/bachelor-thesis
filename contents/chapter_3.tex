@@ -5,7 +5,7 @@
 \section{实验数据集介绍}
   \subsection{OAI-ZIB 数据集}
     骨关节炎倡议-柏林祖斯研究所（Osteoarthritis Initiative-Zuse Institute Berlin, OAI-ZIB）数据集是膝关节医学影像分割研究中常用的公开数据集\cite{ambellanAutomatedSegmentationKnee2019}。
-    OAI 是美国的一个长达数年的前瞻性研究项目，旨在识别骨关节炎（Osteoarthritis, OA）的生物标志物。
+    骨关节炎倡议（Osteoarthritis Initiative, OAI）是美国的一个长达数年的前瞻性研究项目，旨在识别骨关节炎（Osteoarthritis, OA）的生物标志物。
     它是由柏林祖斯研究所（Zuse Institute Berlin, ZIB）在 OAI 原始数据库的基础上，筛选了507例膝关节病例，经过专家手工精细标注而形成的子集。
     该数据集提供了较高空间分辨率的三维解剖信息，具体为 \qty{0.7000}{\milli\metre} $\times$ \qty{0.3646}{\milli\metre} $\times$ \qty{0.3646}{\milli\metre}，是开发和验证自动分割、定量软骨分析算法的常用选择。
     \subsubsection{DESS 序列的技术原理}
@@ -102,7 +102,7 @@
       \end{figure}
     \subsubsection{标注数据在研究流程中的定位}
       在整个跨域迁移与网络对抗训练过程中，这30例带有标签的FSE数据被隔离，不参与任何梯度计算与网络权重的反向传播更新。
-      其作用集中在模型推理阶段：第四章基于其中150张质控合格的矢状位切片，计算网络预测掩膜与人工标注掩膜之间的Dice相似系数、平均表面距离（ASD）等空间重叠度量指标，
+      其作用集中在模型推理阶段：第四章基于其中150张质控合格的矢状位切片，计算网络预测掩膜与人工标注掩膜之间的Dice相似系数、平均表面距离（Average Surface Distance, ASD）等空间重叠度量指标，
       用于量化评估DANN模型在骨与软骨跨序列分割任务中的目标域表现，
       为后续开展软骨形态学指标和BML候选高信号体积的宏观临床统计奠定数据基础。
     \subsubsection{临床数据的伦理审批与患者隐私保护}
@@ -112,12 +112,12 @@
       整个研究的数据管理与使用严格遵循《赫尔辛基宣言》的医学伦理基本原则与患者数据保密规范。
 \section{图像预处理流程}
   \subsection{格式的转换与数据清洗}
-    在临床医学影像研究中，原始的核磁共振（MRI）数据通常以医学数字成像和通信（Digital Imaging and Communications in Medicine, DICOM）格式从医院的图像存档与通信系统（PACS）中导出。
+    在临床医学影像研究中，原始的核磁共振（MRI）数据通常以医学数字成像和通信（Digital Imaging and Communications in Medicine, DICOM）格式从医院的图像存档与通信系统（Picture Archiving and Communication System, PACS）中导出。
     DICOM格式包含图像像素矩阵，也封装了较为复杂的患者隐私信息与扫描仪物理参数。
     但直接使用DICOM数据进行深度学习模型训练并不方便。
     \subsubsection{临床DICOM数据的清洗与NIfTI体积化重构}
       \par 由于本研究的目标域数据（500例孤立ACL撕裂与165例MLKI患者的三平面Fat-suppressed FSE序列）来源于真实的临床环境，
-      数据在扫描层厚、视野范围（FOV）以及文件命名规范上存在较大的异质性。
+      数据在扫描层厚、视野范围（Field of View, FOV）以及文件命名规范上存在较大的异质性。
       此外，DICOM通常将三维扫描存储为数十甚至上百个独立的二维切片文件，这会增加文件系统输入输出的开销，
       也不便直接表达体素在三维空间中的连续拓扑关系。
       \par 为了使数据结构适配三维卷积神经网络（如3D U-Net）及多平面融合算法的输入需求，本研究首先通过Python脚本（利用 dcm2nii 工具包）进行了数据格式转换与脱敏清洗。
@@ -132,7 +132,7 @@
       随后，通过中心裁剪（Center Crop）与零填充（Zero-padding）结合的策略（Reshape + Crop），将所有三平面的MRI切片在面内维度统一调整为 384×384 像素。
       这一尺寸既满足网络输入要求，也与源域（OAI-ZIB）尺寸保持一致，便于后续DANN进行跨域特征匹配。
     \subsubsection{偏置场校正与三维全局灰度归一化}
-      与CT图像具有绝对的Hounsfield单位（HU）不同，MRI的信号强度（灰度值）是相对的，且容易受到主磁场不均匀性及射频线圈敏感度差异的影响。
+      与CT图像具有绝对的亨氏单位（Hounsfield Unit, HU）不同，MRI的信号强度（灰度值）是相对的，且容易受到主磁场不均匀性及射频线圈敏感度差异的影响。
       这种物理限制会在同一图像内部产生低频的灰度渐变伪影（即偏置场，Bias Field），并导致不同患者间的整体亮度分布存在较大差异。
       \par 为了消除此类非解剖学因素的干扰，本预处理流程引入了两个信号标准化步骤：
       \par 首先，应用N4偏置场校正算法（N4 Bias Field Correction）对所有NIfTI体积进行低频伪影消除，以改善软骨与关节滑液、骨髓病变（BML）与正常脂肪组织之间的局部对比度平滑性。
@@ -182,7 +182,7 @@
     在完成了 DICOM 到 NIfTI 的格式转换以及 N4 偏置场校正后，虽然单例 MRI 图像的内部低频伪影已被消除，
     但由于 500 例孤立 ACL 撕裂和 165 例多发韧带损伤（MLKI）患者的影像来源于真实的临床扫描环境，
     不同患者或不同批次之间在物理分辨率（Voxel Spacing）和绝对灰度分布上仍存在较大的异质性。
-    为了满足基于 ResNet-34 骨干网络的深度学习模型对统一张量输入的要求，并缩小与源域（OAI-ZIB 数据集）的底层特征差异，
+    为了满足基于 ResNet34 骨干网络的深度学习模型对统一张量输入的要求，并缩小与源域（OAI-ZIB 数据集）的底层特征差异，
     本研究实施了物理空间重采样与 3D 全局灰度归一化处理。
     \subsubsection{物理空间域的重采样（Resampling）与尺寸对齐}
       在卷积神经网络（CNN）中，特定大小的卷积核（如 3×3）在不同物理分辨率的图像上所涵盖的真实解剖学视野（即感受野，Receptive Field）可能不同。
